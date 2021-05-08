@@ -1,2 +1,86 @@
 # dict_flatten
 Short function to flatten nested dictionaries into one level dictionary.
+
+
+The `flatten_dict` function takes in a dictionary object and returns a new dictionary object without any nested dictionaries or lists. For example, say I have the following dictionary:
+
+     dict_obj = {
+     'customer': {'lastName': 'Doe',
+      'billingAddress': {'city': 'New Jersey',
+       'countryCode': 'US',
+       'address1': 'Street address1',
+       'phone': '3054521121',
+       'stateCode': 'DE',
+       'postalCode': '15720-3154'},
+      'email': 'johndoe@gmail.com',
+      'firstName': 'John',
+      'customerNo': '0000001'},
+     'sourceId': 'DSK',
+     'orderDate': '2020-02-22T08:00:12.000Z',
+     'payments': [{'payment': {'expirationMonth': 10,
+        'fraudCheckStatus': 'REJECT',
+        'csDecision': 'REJECT',
+        'amount': '90.00',
+        'expirationYear': 2020,
+        'cardType': 'MasterCard',
+        'cardNumber': '************0000',
+        'cardHolder': 'JOHN DOE',
+        'transactionId': '465462168416521684',
+        'paymentMethod': 'CREDIT_CARD'}}],
+     'orderNo': '00000001',
+     'totals': [{'merchandizeTotal': {'tax': '0.00',
+        'netPrice': '90.00',
+        'grossPrice': '90.00'}},
+      {'adjustedMerchandizeTotal': {'tax': '0.00',
+        'netPrice': '90.00',
+        'grossPrice': '90.00'}},
+      {'shippingTotal': {'tax': '0.00', 'netPrice': '6.00', 'grossPrice': '6.00'}},
+      {'adjustedShippingTotal': {'tax': '0.00',
+        'netPrice': '0.00',
+        'grossPrice': '0.00'}},
+      {'orderTotal': {'tax': '0.00', 'netPrice': '90.00', 'grossPrice': '90.00'}}]
+      }
+     
+     
+calling `flatten_dict(dict_object)` will returns:
+
+    {'customer.lastName': 'Doe',
+     'customer.billingAddress.city': 'New Jersey',
+     'customer.billingAddress.countryCode': 'US',
+     'customer.billingAddress.address1': 'Street address1',
+     'customer.billingAddress.phone': '3054521121',
+     'customer.billingAddress.stateCode': 'DE',
+     'customer.billingAddress.postalCode': '15720-3154',
+     'customer.email': 'johndoe@gmail.com',
+     'customer.firstName': 'John',
+     'customer.customerNo': '0000001',
+     'sourceId': 'DSK',
+     'orderDate': '2020-02-22T08:00:12.000Z',
+     'payments[0].payment.expirationMonth': 10,
+     'payments[0].payment.fraudCheckStatus': 'REJECT',
+     'payments[0].payment.csDecision': 'REJECT',
+     'payments[0].payment.amount': '90.00',
+     'payments[0].payment.expirationYear': 2020,
+     'payments[0].payment.cardType': 'MasterCard',
+     'payments[0].payment.cardNumber': '************0000',
+     'payments[0].payment.cardHolder': 'JOHN DOE',
+     'payments[0].payment.transactionId': '465462168416521684',
+     'payments[0].payment.paymentMethod': 'CREDIT_CARD',
+     'orderNo': '00000001',
+     'totals[0].merchandizeTotal.tax': '0.00',
+     'totals[0].merchandizeTotal.netPrice': '90.00',
+     'totals[0].merchandizeTotal.grossPrice': '90.00',
+     'totals[1].adjustedMerchandizeTotal.tax': '0.00',
+     'totals[1].adjustedMerchandizeTotal.netPrice': '90.00',
+     'totals[1].adjustedMerchandizeTotal.grossPrice': '90.00',
+     'totals[2].shippingTotal.tax': '0.00',
+     'totals[2].shippingTotal.netPrice': '6.00',
+     'totals[2].shippingTotal.grossPrice': '6.00',
+     'totals[3].adjustedShippingTotal.tax': '0.00',
+     'totals[3].adjustedShippingTotal.netPrice': '0.00',
+     'totals[3].adjustedShippingTotal.grossPrice': '0.00',
+     'totals[4].orderTotal.tax': '0.00',
+     'totals[4].orderTotal.netPrice': '90.00',
+     'totals[4].orderTotal.grossPrice': '90.00'}
+     
+The `.` seperator can be changed in the `create_new_dict` function.
