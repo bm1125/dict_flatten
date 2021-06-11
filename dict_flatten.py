@@ -12,7 +12,4 @@ def flatten_dict(dict_obj):
 
 def create_new_dict(dict_obj, prefix = None):
     prefix = prefix or ""
-    temp_dict = {}
-    for key, value in dict_obj.items():
-        temp_dict[prefix + "." + key] = value
-    return temp_dict
+    return {prefix + "." + key: value for key, value in dict_obj.items()}
